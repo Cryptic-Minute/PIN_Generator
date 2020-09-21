@@ -3,6 +3,7 @@
 
 import random
 import sys
+import pyperclip
 
 # ---- Handle arguments ----
 if len(sys.argv) < 2:
@@ -19,4 +20,5 @@ for i in range(length):
     password += random.choice(charset)
 
 # --------- Output -------------
-print(password)
+print(str(length) + ' character password copied to clipboard.')
+pyperclip.copy(password)
