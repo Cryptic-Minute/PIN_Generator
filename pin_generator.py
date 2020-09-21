@@ -2,15 +2,23 @@
 # By https://github.com/hacker41d4n/
 
 import random
-chars ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+}{"
-length = int(input("Enter password length "))
-password=""
-for i in range(length+1):
-    password += random.choice(chars)
-print(password)
+import sys
+import pyperclip
 
-# Sample output :
-#
-#
-# Enter password length 8
-# l#9RX!ufa
+# ---- Handle arguments ----
+if len(sys.argv) < 2:
+    print("Usage: " + sys.argv[0] + " <password length>")
+    sys.exit(1)
+
+# ---- Variables ----
+length      =   int(sys.argv[1])
+charset     =   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+}{"
+password    =   str()
+
+# ---- Work -----
+for i in range(length):
+    password += random.choice(charset)
+
+# --------- Output -------------
+print(str(length) + ' character password copied to clipboard.')
+pyperclip.copy(password)
